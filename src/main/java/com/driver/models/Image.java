@@ -9,8 +9,6 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Image{
     @Id
@@ -21,4 +19,34 @@ public class Image{
     @ManyToOne
     @JoinColumn
     Blog blog;
+
+    public int getId() {
+        return id;
+    }
+
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDimensions() {
+        return dimensions;
+    }
+
+    public void setDimensions(String dimensions) {
+        this.dimensions = dimensions;
+    }
+
+    public Blog getBlog() {
+        return blog;
+    }
+
+    public void setBlog(Blog blog) {
+        this.blog = blog;
+    }
 }

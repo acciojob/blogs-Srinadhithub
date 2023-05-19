@@ -29,6 +29,31 @@ public class Blog{
     @JoinColumn
     User user;
 
+    public Blog(int id, String title, String content, Date pubDate, List<Image> imageList, User user) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.pubDate = pubDate;
+        this.imageList = imageList;
+        this.user = user;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getPubDate() {
+        return pubDate;
+    }
+
+    public void setPubDate(Date pubDate) {
+        this.pubDate = pubDate;
+    }
+
     public String getTitle() {
         return title;
     }

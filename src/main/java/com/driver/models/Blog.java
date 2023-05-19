@@ -14,10 +14,6 @@ import java.util.List;
 
 @Builder
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Blog{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -21,7 +21,7 @@ String password;
 String firstName;
 String lastName;
 @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    List<Blog> blogList= new ArrayList<>();
+    List<Blog> blogsList= new ArrayList<>();
 
     public User(int id, String userName, String password, String firstName, String lastName, List<Blog> blogList) {
         this.id = id;
@@ -29,7 +29,7 @@ String lastName;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.blogList = blogList;
+        this.blogsList = blogList;
     }
 
     public String getUsername() {
@@ -64,7 +64,7 @@ String lastName;
         this.lastName = lastName;
     }
 
-    public List<Blog> getBlogList() {
+    public List<Blog> getBlogsList() {
         return blogsList;
     }
 

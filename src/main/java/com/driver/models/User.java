@@ -62,4 +62,7 @@ String lastName;
     public void setBlogsList(List<Blog> blogsList) {
         this.blogsList = blogsList;
     }
+    public  int getId(){
+        return this.id;
+    }
 }

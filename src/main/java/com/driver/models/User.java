@@ -9,9 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-@Builder
 @Entity
 public class User{
 @Id
@@ -23,13 +23,13 @@ String lastName;
 @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     List<Blog> blogsList= new ArrayList<>();
 
-    public User(int id, String userName, String password, String firstName, String lastName, List<Blog> blogList) {
-        this.id = id;
-        this.userName = userName;
+    public User( String name,String password) {
+
+        this.userName = name;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.blogsList = blogList;
+        this.firstName = "test";
+        this.lastName = "test";
+
     }
 
     public String getUsername() {
@@ -76,4 +76,9 @@ String lastName;
     }
     public  int setId(int id){
         return this.id=id;
-    }}
+    }
+
+    public List<Blog> getBlogList() {
+        return blogsList;
+    }
+}

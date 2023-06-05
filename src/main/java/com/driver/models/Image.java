@@ -6,10 +6,8 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
-@Builder
+
 @Entity
-@Data
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Image{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,8 +18,7 @@ public class Image{
     @JoinColumn
     Blog blog;
 
-    public Image(int id, String description, String dimensions, Blog blog) {
-        this.id = id;
+    public Image( String description, String dimensions, Blog blog) {
         this.description = description;
         this.dimensions = dimensions;
         this.blog = blog;

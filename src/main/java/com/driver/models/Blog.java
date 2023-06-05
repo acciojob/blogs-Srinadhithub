@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Builder
+
 @Entity
 public class Blog{
     @Id
@@ -22,6 +22,7 @@ public class Blog{
     String content;
     @CreationTimestamp
     Date pubDate;
+
     @OneToMany(mappedBy = "blog",cascade = CascadeType.ALL)
     List<Image> imageList= new ArrayList<>();
 
@@ -29,12 +30,9 @@ public class Blog{
     @JoinColumn
     User user;
 
-    public Blog(int id, String title, String content, Date pubDate, List<Image> imageList, User user) {
-        this.id = id;
+    public Blog(String title, String content, User user) {
         this.title = title;
         this.content = content;
-        this.pubDate = pubDate;
-        this.imageList = imageList;
         this.user = user;
     }
 

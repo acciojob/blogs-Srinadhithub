@@ -23,7 +23,7 @@ String lastName;
 @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     List<Blog> blogsList= new ArrayList<>();
 
-    public User( String name,String password) {
+    public User(String name,String password) {
 
         this.userName = name;
         this.password = password;

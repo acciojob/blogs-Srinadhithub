@@ -1,43 +1,57 @@
 package com.driver.models;
 
-
-import lombok.*;
-import lombok.experimental.FieldDefaults;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.Calendar;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name="user")
 public class User{
-@Id
-    int id;
-String userName;
-String password;
-String firstName;
-String lastName;
-@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    List<Blog> blogsList= new ArrayList<>();
 
-    public User(String name,String password) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String username;
+    private String password;
+    private String firstName = "test";
+    private String lastName = "test";
 
-        this.userName = name;
+    //Mapping
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JoinColumn
+    private List<Blog> blogList;
+
+    public User() {
+
+    }
+
+    public User(String username, String password) {
+        this.username = username;
         this.password = password;
-        this.firstName = "test";
-        this.lastName = "test";
+    }
 
+    public User(int id, String username, String password, String firstName, String lastName, List<Blog> blogList) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.blogList = blogList;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
-        return userName;
+        return username;
     }
 
-    public void setUsername(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -48,11 +62,11 @@ String lastName;
         this.password = password;
     }
 
-    public String getFirstname() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstname(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
@@ -64,21 +78,11 @@ String lastName;
         this.lastName = lastName;
     }
 
-    public List<Blog> getBlogsList() {
-        return blogsList;
-    }
-
-    public void setBlogList(List<Blog> blogsList) {
-        this.blogsList = blogsList;
-    }
-    public  int getId(){
-        return this.id;
-    }
-    public  int setId(int id){
-        return this.id=id;
-    }
-
     public List<Blog> getBlogList() {
-        return blogsList;
+        return blogList;
+    }
+
+    public void setBlogList(List<Blog> blogList) {
+        this.blogList = blogList;
     }
 }

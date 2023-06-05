@@ -15,24 +15,25 @@ public class ImageService {
     @Autowired
     ImageRepository imageRepository2;
 
-    public Image addImage(Integer blogId, String description, String dimensions){
+    public Image addImage(Integer blogId, String description, String dimensions) {
         //add an image to the blog
-
-      Blog blog=blogRepository2.findById(blogId).get();
-      Image image= new Image(description,dimensions,blog);
-      blog.getImageList().add(image);
-      blogRepository2.save(blog);
-      return image;
+//        if(!blogRepository2.findById(blogId).isPresent()) {
+//            throw new Exception();
+//        }
+        Blog blog = blogRepository2.findById(blogId).get();
+        Image image = new Image(blog,description,dimensions);
+        blog.getImageList().add(image);
+        blogRepository2.save(blog);
+        return image;
+        //Here I am not explicitly adding image in image-repository because due to cascading effect
     }
 
     public void deleteImage(Integer id){
-        Blog blog=imageRepository2.findById(id).get().getBlog();
-        blog.getImageList().remove(imageRepository2.findById(id).get());
         imageRepository2.deleteById(id);
     }
 
     public int countImagesInScreen(Integer id, String screenDimensions) {
-        //Find the number of images of given dimensions that can fit in a screen having screenDimensions
+        //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
         String [] scrarray = screenDimensions.split("X"); //A=Length   X    B=Breadth
 //        if(!imageRepository2.findById(id).isPresent()){
 //            throw new Exception();
@@ -56,6 +57,5 @@ public class ImageService {
         int lenC = scrl/imgl; //
         int lenB = scrb/imgb;
         return lenC*lenB;
-
     }
 }
